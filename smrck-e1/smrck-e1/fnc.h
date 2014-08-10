@@ -26,5 +26,7 @@ public:
 	~fnc();
 
 	void out();
+	int false_str();
+	float calculation(float x);
 };
 

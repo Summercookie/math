@@ -3,6 +3,7 @@
 #include <vector>
 #include <stack>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -104,7 +105,7 @@ void fnc::fill_function(std::string str)
 	for (int i = 0; i < str.length(); i++)
 	{
 		string mrph;														//morphe - синтаксическая единица
-		while ((str[i] != ' ') && (str[i] != '(') && (str[i] != ')') && (i < str.length()))
+		while ((str[i] != ' ') && (str[i] != '(') && (str[i] != ')') && (mrph != "+") && (mrph != "-") && (mrph != "*") && (mrph != "/") && (mrph != "^") && (i < str.length()))
 		{
 			mrph += str[i];
 			i++;
@@ -179,4 +180,24 @@ void fnc::out()
 	if (function.empty()) cout << "Empty!\n";
 	else for (vector<f_element>::iterator it = function.begin(); it != function.end(); it++)
 	cout <<(*it).contents << ' ';
+}
+
+int fnc::false_str()
+{
+	if (stop) return 1;
+	else return 0;
+}
+
+float fnc::calculation(float x)
+{
+	for (vector<f_element>::iterator it = function.begin(); it != function.end(); it++)
+	{
+		int i = 0;
+		for (i = 0; i < 12; i++)
+
+		switch (i)
+		{
+			
+		}
+	}
 }

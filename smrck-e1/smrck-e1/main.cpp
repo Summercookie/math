@@ -16,7 +16,8 @@ int main()
 	getline(cin,str);
 
 	fnc lol(str);
-	lol.out();
+	if (!lol.false_str()) lol.out();
+	else cout << "ERROR!";
 	cout << endl;
 
 	system("pause");
