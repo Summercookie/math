@@ -20,6 +20,9 @@ int main()
 	else cout << "ERROR!";
 	cout << endl;
 
+	for (float num = 0; num < 3.25; num += 0.1)
+		cout << num << " | " << lol.calculation(num) << endl;
+
 	system("pause");
 	return 0;
 }

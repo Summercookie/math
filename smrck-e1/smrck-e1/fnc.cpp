@@ -58,6 +58,7 @@ void fnc::fill_elements_set()
 	for (int i = 0; i < 13; i++)
 	{
 		elements_set[i].contents = fnc_set[i];
+		elements_set[i].position = i;
 		if (i < 2) elements_set[i].priority = 0;
 		else
 		if ((i > 1) && (i < 4)) elements_set[i].priority = 1;
@@ -123,6 +124,7 @@ void fnc::fill_function(std::string str)
 					  f_element tmp;
 					  tmp.contents = mrph;
 					  tmp.priority = 0;
+					  tmp.position = 0;
 					  tmp.value = strtonum(mrph);
 					  function.push_back(tmp);
 			} break;
@@ -190,14 +192,96 @@ int fnc::false_str()
 
 float fnc::calculation(float x)
 {
+	stack<float> turn;
+
 	for (vector<f_element>::iterator it = function.begin(); it != function.end(); it++)
 	{
-		int i = 0;
-		for (i = 0; i < 12; i++)
-
-		switch (i)
+		switch ((*it).position)
 		{
-			
+		case 0: 
+		{
+				  turn.push((*it).value);
+		} break;
+		case 1: 
+		{
+				  turn.push(x);
+		} break;
+		case 2: 
+		{
+				  float tmp = turn.top();
+				  turn.pop();
+				  tmp += turn.top();
+				  turn.pop();
+				  turn.push(tmp);
+		} break;
+		case 3: 
+		{
+				  float tmp1 = turn.top();
+				  turn.pop();
+				  float tmp2 = turn.top();
+				  turn.pop();
+				  turn.push(tmp2 - tmp1);
+		} break;
+		case 4: 
+		{
+				  float tmp = turn.top();
+				  turn.pop();
+				  tmp *= turn.top();
+				  turn.pop();
+				  turn.push(tmp);
+		} break;
+		case 5:
+		{
+				  float tmp1 = turn.top();
+				  turn.pop();
+				  float tmp2 = turn.top();
+				  turn.pop();
+				  turn.push(tmp2 / tmp1);
+		} break;
+		case 6: 
+		{
+				  float tmp1 = turn.top();
+				  turn.pop();
+				  float tmp2 = turn.top();
+				  turn.pop();
+				  turn.push(pow(tmp2, tmp1));
+		} break;
+		case 7: 
+		{
+				  float tmp = turn.top();
+				  turn.pop();
+				  turn.push(log(tmp));
+		} break;
+		case 8: 
+		{
+				  float tmp = turn.top();
+				  turn.pop();
+				  turn.push(sin(tmp));
+		} break;
+		case 9: 
+		{
+				  float tmp = turn.top();
+				  turn.pop();
+				  turn.push(cos(tmp));
+		} break;
+		case 10: 
+		{
+				   float tmp = turn.top();
+				   turn.pop();
+				   turn.push(tan(tmp));
+		} break;
+		case 11: 
+		{
+				   float tmp = turn.top();
+				   turn.pop();
+				   turn.push(1./tan(tmp));
+		} break;
+		default:
+			stop = 1;
+			break;
 		}
+		
 	}
+
+	return turn.top();
 }

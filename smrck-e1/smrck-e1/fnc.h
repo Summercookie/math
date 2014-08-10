@@ -9,6 +9,7 @@ private:
 	{
 		std::string contents;
 		int priority;
+		int position;
 		float value;
 	} elements_set[14];									//Вероятные члены функции
 	std::vector<f_element> function;					//Функция
